@@ -1,7 +1,6 @@
 export const brandAssets = {
   logo: "/images/brand/oleander-logo.png",
   favicon: "/favicon.png",
-  faviconIco: "/favicon.ico",
   appleTouchIcon: "/apple-touch-icon.png",
 } as const;
 

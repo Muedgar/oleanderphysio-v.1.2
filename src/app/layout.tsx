@@ -32,7 +32,6 @@ export const metadata: Metadata = {
         type: "image/png",
       },
     ],
-    shortcut: siteConfig.faviconIco,
     apple: siteConfig.appleTouchIcon,
   },
   alternates: {
