@@ -17,6 +17,8 @@ export const metadata: Metadata = {
     template: defaultSeo.titleTemplate,
   },
   description: defaultSeo.description,
+  applicationName: siteConfig.name,
+  category: "healthcare",
   icons: {
     icon: [
       {

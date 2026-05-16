@@ -7,10 +7,21 @@ type PageSeoKey = keyof typeof pageSeo;
 export function createPageMetadata(page: PageSeoKey): Metadata {
   const metadata = pageSeo[page];
   const absoluteUrl = `${siteConfig.siteUrl}${metadata.path}`;
+  const title =
+    page === "home" ? { absolute: metadata.title } : metadata.title;
 
   return {
-    title: metadata.title,
+    title,
     description: metadata.description,
+    keywords: [
+      "Oleander Physio",
+      "Oleander Physio Clinic",
+      "Oleander Physio Clinic Gambia",
+      "physiotherapy in The Gambia",
+      "physiotherapy in Bakau",
+      "sports physiotherapy Gambia",
+      "rehabilitation clinic Bakau",
+    ],
     alternates: {
       canonical: metadata.path,
     },
