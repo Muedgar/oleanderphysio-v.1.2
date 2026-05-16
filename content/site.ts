@@ -4,11 +4,12 @@ import { contactInfo, fullAddress } from "./contact";
 export const siteConfig = {
   name: "Oleander Physio Clinic",
   legalName: "Oleander Physio Clinic",
+  alternateNames: ["Oleander Physio", "Oleander Physio Clinic Gambia"],
   tagline: "Your Path To Recovery",
   description:
-    "Physiotherapy clinic in Bakau, The Gambia, offering rehabilitation, recovery support, wellness care, and specialist physiotherapy services.",
+    "Oleander Physio Clinic is a physiotherapy clinic in Bakau, The Gambia, offering rehabilitation, recovery support, wellness care, and specialist physiotherapy services.",
   locale: "en_GM",
-  siteUrl: "https://oleanderphysioclinic.com",
+  siteUrl: "https://www.oleanderphysio.com",
   logo: brandAssets.logo,
   favicon: brandAssets.favicon,
   appleTouchIcon: brandAssets.appleTouchIcon,

@@ -24,21 +24,21 @@ export const defaultSeo = {
 
 export const pageSeo = {
   home: {
-    title: "Oleander Physio Clinic",
+    title: "Oleander Physio Clinic | Physiotherapy in Bakau, The Gambia",
     description:
-      "Physiotherapy clinic in Bakau, The Gambia, offering specialist rehabilitation, recovery support, and wellness services.",
+      "Oleander Physio Clinic in Bakau, The Gambia offers sports, neurological, orthopedic, paediatric, women's health, geriatric, respiratory, and workplace physiotherapy.",
     path: "/",
   },
   about: {
-    title: "About",
+    title: "About Oleander Physio Clinic",
     description:
       "Learn about Oleander Physio Clinic and its physiotherapy care for recovery, mobility, and wellbeing.",
     path: "/about/",
   },
   services: {
-    title: "Services",
+    title: "Physiotherapy Services",
     description:
-      "Sports, neurological, orthopedic, women's health, paediatric, cardiorespiratory, geriatric, community, and workplace physiotherapy services.",
+      "Explore Oleander Physio Clinic services including sports, neurological, orthopedic, women's health, paediatric, cardiorespiratory, geriatric, community, and workplace physiotherapy.",
     path: "/services/",
   },
   foundation: {
@@ -48,7 +48,7 @@ export const pageSeo = {
     path: "/foundation/",
   },
   contact: {
-    title: "Contact",
+    title: "Contact Oleander Physio Clinic",
     description:
       "Contact Oleander Physio Clinic in Bakau to book an appointment or ask about physiotherapy services.",
     path: "/contact/",
@@ -85,8 +85,10 @@ export const sitemapPages = [
 
 export const localBusinessJsonLd = {
   "@context": "https://schema.org",
-  "@type": "MedicalBusiness",
+  "@type": ["MedicalBusiness", "MedicalClinic"],
+  "@id": `${siteConfig.siteUrl}/#clinic`,
   name: siteConfig.name,
+  alternateName: siteConfig.alternateNames,
   legalName: siteConfig.legalName,
   description: siteConfig.description,
   url: siteConfig.siteUrl,
@@ -125,7 +127,9 @@ export const localBusinessJsonLd = {
 export const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": `${siteConfig.siteUrl}/#website`,
   name: siteConfig.name,
+  alternateName: siteConfig.alternateNames,
   url: siteConfig.siteUrl,
   description: siteConfig.description,
   inLanguage: "en",
