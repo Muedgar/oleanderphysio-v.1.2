@@ -11,7 +11,6 @@ export const siteConfig = {
   siteUrl: "https://oleanderphysioclinic.com",
   logo: brandAssets.logo,
   favicon: brandAssets.favicon,
-  faviconIco: brandAssets.faviconIco,
   appleTouchIcon: brandAssets.appleTouchIcon,
   contact: contactInfo,
   address: fullAddress,
