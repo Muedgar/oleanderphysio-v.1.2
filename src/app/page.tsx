@@ -1,390 +1,284 @@
-"use client";
-
-import "../styles/home.css";
-import "../styles/how_it_works.css";
-
-import doc from "../assets/doc_eric.png";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 import {
-  faCalendar,
-  faCalendarDays,
-  faClock,
-  faEnvelope,
-  faLifeRing,
-  faPlayCircle,
-} from "@fortawesome/free-regular-svg-icons";
+  ArrowRight,
+  BadgeCheck,
+  CalendarDays,
+  HeartPulse,
+  MapPin,
+  ShieldCheck,
+  Sparkles,
+  Users,
+} from "lucide-react";
 
-import hallway from "../assets/hallway_2.avif";
-
-import hallwayTwo from "../assets/hallway_1.avif";
 import {
-  faArrowLeft,
-  faArrowRight,
-  faClose,
-  faCross,
-  faLocation,
-  faPhone,
-  faPlay,
-} from "@fortawesome/free-solid-svg-icons";
-import { faCalendarDay } from "@fortawesome/free-solid-svg-icons/faCalendarDay";
+  contactActions,
+  contactInfo,
+  fullAddress,
+  homePage,
+  imageAltText,
+  promoImages,
+  siteConfig,
+} from "../../content";
+import { createPageMetadata } from "@/lib/seo";
+import { ContactStrip } from "@/components/layout/contact-strip";
+import { Container } from "@/components/layout/container";
+import { Section } from "@/components/layout/section";
+import { SectionHeading } from "@/components/layout/section-heading";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+export const metadata = createPageMetadata("home");
+
+const approachItems = [
+  {
+    title: "Assessment first",
+    description:
+      "Care begins with understanding your symptoms, goals, daily demands, and recovery history.",
+    icon: BadgeCheck,
+  },
+  {
+    title: "Treatment that fits",
+    description:
+      "Plans combine hands-on care, movement guidance, education, and exercise matched to your needs.",
+    icon: HeartPulse,
+  },
+  {
+    title: "Progress you can use",
+    description:
+      "The focus is better movement, safer activity, and confidence in everyday life.",
+    icon: Sparkles,
+  },
+] as const;
 
 export default function Home() {
-  const [screenWidth, setScreenWidth] = useState<any>(
-    typeof window !== "undefined" ? window.innerWidth : 1040,
-  );
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window?.innerWidth);
-    };
-
-    window?.addEventListener("resize", handleResize);
-
-    // Clean up the event listener on component unmount
-    return () => {
-      window?.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const [showVid, setShowVid] = useState(false);
-
-  const [currentSlide, setCurrentSlide] = useState(1);
-
-  const [content, setContent] = useState<any>([]);
-  useEffect(() => {
-    setContent([
-      {
-        title: "Healthcare 1.",
-        content:
-          "sfdjbpiaons;didjbpiaons;difjaskdfjaskddjdjbpiaons;didjbpiaons;difjaskdfjaskddjbpiaons;difjaskdlfj;alskdj aons;didjbpiaons;difjaskdfjaskddjbpiaons;difjaskdlfj;alskdjf",
-      },
-      {
-        title: "Healthcare 2.",
-        content:
-          "sfdjbpiaons;didjbpiaons;difjaskdfjaskddjdjbpiaons;didjbpiaons;difjaskdfjaskddjbpiaons;difjaskdlfj;alskdj aons;didjbpiaons;difjaskdfjaskddjbpiaons;difjaskdlfj;alskdjf",
-      },
-      {
-        title: "Healthcare 3.",
-        content:
-          "sfdjbpiaons;didjbpiaons;difjaskdfjaskddjdjbpiaons;didjbpiaons;difjaskdfjaskddjbpiaons;difjaskdlfj;alskdj aons;didjbpiaons;difjaskdfjaskddjbpiaons;difjaskdlfj;alskdjf",
-      },
-    ]);
-  }, []);
   return (
     <>
-      <div
-        id="home_container"
-        className="home w-screen h-fit flex flex-row justify-center items-center pb-4"
-      >
-        <div
-          id="home_hide_content_1"
-          className="m-auto h-full flex flex-col justify-start pt-20 pl-20 items-start w-1/2"
-        >
-          <p
-            className={
-              screenWidth > 1000
-                ? "text-[2em] font-bold text-[rgb(10,32,32)] mt-5"
-                : "text-[2em] font-bold text-[rgb(10,32,32)]"
-            }
-          >
-            <span>Feel Better About</span> <br />
-            <span>
-              Finding <span className="text-[rgb(37,88,95)]">Health care</span>
-            </span>
-          </p>
-          <p
-            style={{ wordBreak: "break-word" }}
-            className="break-words text-[1em] font-400 text-slate-900 mt-5"
-          >
-            loasdfj;aklsdjf;lkasdjf;iasjdfmioqwnem;vioasdjf;lkasdjfioasnva;sdifj;laksdjf;aksdnf;klasndf;nioasdf
-          </p>
-          <div className={screenWidth > 1000 ? "mt-16" : "mt-5"}>
-            <button className="bg-[rgb(37,88,95)] p-3 m-2 text-white cursor-pointer hover:shadow-lg hover:shadow-black text-sm outline-none">
-              Get Care
-            </button>
-            <button className="bg-[rgb(10,32,32)] p-3 m-2 text-white cursor-pointer hover:shadow-lg hover:shadow-black text-sm outline-none">
-              Call Us Now
-            </button>
-          </div>
-        </div>
-        <div
-          id="home_hide_content_2"
-          className="m-auto h-[90%] flex flex-col mt-3 justify-start pt-10 pl-5 pr-5 items-start w-[80%] bg-gradient-to-r from-blue-100 to-green-100"
-        >
-          <p
-            className={
-              screenWidth > 1000
-                ? "text-[2em] font-bold text-[rgb(10,32,32)] mt-5"
-                : "text-[2em] font-bold text-[rgb(10,32,32)]"
-            }
-          >
-            <span>Feel Better About</span> <br />
-            <span>
-              Finding <span className="text-[rgb(37,88,95)]">Health care</span>
-            </span>
-          </p>
-          <p
-            style={{ wordBreak: "break-word" }}
-            className="break-words text-[1em] font-400 text-slate-900 mt-5"
-          >
-            loasdfj;aklsdjf;lkasdjf;iasjdfmioqwnem;vioasdjf;lkasdjfioasnva;sdifj;laksdjf;aksdnf;klasndf;nioasdf
-          </p>
-          <div className={screenWidth > 1000 ? "mt-16" : "mt-5"}>
-            <button className="bg-[rgb(37,88,95)] p-3 m-2 text-white cursor-pointer hover:shadow-lg hover:shadow-black text-sm outline-none">
-              Get Care
-            </button>
-            <button className="bg-[rgb(10,32,32)] p-3 m-2 text-white cursor-pointer hover:shadow-lg hover:shadow-black text-sm outline-none">
-              Call Us Now
-            </button>
-          </div>
-        </div>
-        <div className="home_hide_doc w-1/2 relative h-[500px]">
-          <div className="absolute bottom-0 w-[350px] h-[450px] bg-white ml-[50px] rounded-tl-[200px] rounded-tr-[200px]">
-            <Image
-              className="absolute bottom-0 w-full h-full object-cover rounded-tl-[200px] rounded-tr-[200px]"
-              src={doc}
-              alt="doc"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div className="w-screen h-[800px] relative">
-        {showVid && (
-          <div className="absolute top-0 z-[120] w-full h-full">
-            <button
-              className="absolute top-2 right-2 w-8 h-8 bg-black text-white z-[150] cursor-pointer shadow-xl shadow-black hover:shadow-none"
-              onClick={() => setShowVid(false)}
-            >
-              <FontAwesomeIcon icon={faClose} />
-            </button>
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/z4d4RuOgFjs?si=kxhb0ERHdLB5PUfK?mute=0"
-              title="Oleander Physio Clinic"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            ></iframe>
-          </div>
-        )}
-        <div id="how_it_works_video" className="absolute top-0 w-full h-full">
-          <Image
-            className="w-full h-full relative"
-            alt="hallway"
-            src={hallway}
-          />
-        </div>
-        <div className="absolute top-0 z-90 w-full h-full flex flex-col justify-evenly items-center">
-          <div>
-            <h1 className="text-[2em] text-center z-90 text-black font-bold">
-              <span className="bg-black text-white p-2 text-center">
-                YOUR JOURNEY TO
-              </span>{" "}
-              <br />
-              <br />
-              <span className="bg-black text-white p-2 text-center">
-                WELLNESS BEGINS HERE
-              </span>
+      <section className="relative isolate overflow-hidden bg-clinic-ink text-white">
+        <Image
+          src={homePage.heroImage}
+          alt={imageAltText.appointment}
+          fill
+          priority
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-center opacity-58"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(16,42,42,0.96),rgba(16,42,42,0.78)_42%,rgba(43,180,167,0.36))]" />
+        <Container className="grid min-h-[76svh] items-center gap-10 py-16 md:py-20 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="max-w-3xl">
+            <Badge className="bg-white/14 text-white ring-1 ring-white/22">
+              {homePage.eyebrow}
+            </Badge>
+            <h1 className="mt-6 font-display text-4xl font-bold leading-tight tracking-normal md:text-6xl">
+              {homePage.title}
             </h1>
-          </div>
-          <div>
-            <div className="h-[90px] w-[90px] rounded-[50%] bg-green-200 flex flex-col justify-center items-center animate-bounce">
-              <button
-                onClick={() => setShowVid(true)}
-                id="how_it_works_video_button"
-                className="relative bg-white text-center h-[70px] w-[70px] rounded-[50%]"
+            <p className="mt-6 max-w-2xl text-base leading-8 text-white/82 md:text-lg">
+              {homePage.intro}
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button asChild size="lg">
+                <a href={siteConfig.primaryCallToAction.href}>
+                  <CalendarDays aria-hidden="true" />
+                  {siteConfig.primaryCallToAction.label}
+                </a>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="secondary"
+                className="bg-white text-clinic-ink hover:bg-clinic-mint"
               >
-                <FontAwesomeIcon
-                  className="text-[2em] text-green-200"
-                  icon={faPlay}
-                />
-              </button>
+                <Link href="/services/">
+                  Explore services
+                  <ArrowRight aria-hidden="true" />
+                </Link>
+              </Button>
+            </div>
+            <dl className="mt-10 grid gap-4 text-sm sm:grid-cols-3">
+              <div>
+                <dt className="font-bold text-primary">Appointments</dt>
+                <dd className="mt-1 text-white/78">{contactInfo.appointmentPhone}</dd>
+              </div>
+              <div>
+                <dt className="font-bold text-primary">Management</dt>
+                <dd className="mt-1 text-white/78">{contactInfo.managementPhone}</dd>
+              </div>
+              <div>
+                <dt className="font-bold text-primary">Location</dt>
+                <dd className="mt-1 text-white/78">Bakau, The Gambia</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div className="hidden justify-end lg:flex">
+            <div className="w-full max-w-sm rounded-lg border border-white/18 bg-white/10 p-5 shadow-soft backdrop-blur">
+              <p className="text-sm font-bold uppercase tracking-normal text-primary">
+                Clinic focus
+              </p>
+              <ul className="mt-4 space-y-3 text-sm leading-6 text-white/86">
+                {homePage.highlights.map((highlight) => (
+                  <li key={highlight} className="flex gap-3">
+                    <ShieldCheck
+                      className="mt-0.5 size-5 shrink-0 text-primary"
+                      aria-hidden="true"
+                    />
+                    <span>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-          <div className="w-[90%] h-fit flex flex-col justify-center items-center">
-            <h4 className="flex flex-col justify-center items-center text-black font-bold">
-              <span className="text-center">
-                Schedule your appointment today and embark on a health
-              </span>
-              <span className="text-center">
-                journey where you are the hero. Your well-being starts with us.
-              </span>
-            </h4>
-            <br />
-            <button className="bg-[#0a1429] p-3 text-white rounded-[30px] text-sm cursor-pointer shadow-lg shadow-black hover:shadow-none z-[100]">
-              How We Work
-            </button>
-          </div>
-        </div>
-      </div>
+        </Container>
+      </section>
 
-      {/* what we love to do */}
+      <Section className="py-8 md:py-10">
+        <Container>
+          <ContactStrip />
+        </Container>
+      </Section>
 
-      <div className="w-screen h-fit p-10">
-        <div id="advantages">
-          <p className="text-[3em] font-bold">
-            <span>We Care About</span>
-            <br />
-            <span>Your</span>
-            <span className="text-[#237e5e]"> Families</span>
-          </p>
-          <div className="w-[40%] h-full flex flex-col justify-end pb-[30px] pl-[50px]">
-            <p className="text-bottom break-words text-slate-600 font-semibold">
-              akdjf;kasjdf;kasdj;fkjsa;dkfja;skdfja;skdfj;aksdjf;alskdjf;aklsjd;flkajs;dlfkj
-            </p>
-          </div>
-        </div>
-
-        <div
-          id="advantages_list"
-          className="mt-[50px] w-full h-fit flex justify-evenly"
-        >
-          <div className="w-fit h-fit flex flex-col mt-[50px]">
-            <p className="font-bold text-[1.5em] text-[#237e5e]">
-              Our Advantages
-            </p>
-            <ul className="m-2">
-              <li className="m-[20px] flex justify-start items-center font-bold">
-                <FontAwesomeIcon
-                  icon={faCalendarDays}
-                  className="bg-[#237e5e3d] p-3 text-[#237e5e] rounded-md mr-2"
-                />{" "}
-                Make an appointment
-              </li>
-              <li className="m-[20px] flex justify-start items-center font-bold">
-                <FontAwesomeIcon
-                  icon={faLifeRing}
-                  className="bg-[#237e5e3d] p-3 text-[#237e5e] rounded-md mr-2"
-                />{" "}
-                Digital x-ray on site
-              </li>
-              <li className="m-[20px] flex justify-start items-center font-bold">
-                <FontAwesomeIcon
-                  icon={faClock}
-                  className="bg-[#237e5e3d] p-3 text-[#237e5e] rounded-md mr-2"
-                />{" "}
-                Emergency services
-              </li>
-              <li className="m-[20px] flex justify-start items-center font-bold">
-                <FontAwesomeIcon
-                  icon={faCross}
-                  className="bg-[#237e5e3d] p-3 text-[#237e5e] rounded-md mr-2"
-                />{" "}
-                Immunizations
-              </li>
-            </ul>
-          </div>
-          <div className="flex relative w-1/2">
-            <Image
-              className="w-[100%] object-fill shadow-2xl shadow-[#68e3b8bd]"
-              src={hallwayTwo}
-              alt="group-photo"
+      <Section className="pt-10">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+              <SectionHeading
+                eyebrow="Our services"
+                title="Specialist physiotherapy for every stage of recovery."
+              description="From sports injuries and orthopedic care to neurological, paediatric, geriatric, women's health, respiratory, workplace, and wellness support."
             />
-            <div className="absolute bottom-[-20px] right-[-20px] bg-[#29bc88] w-[320px] p-5">
-              <p className="text-white flex justify-start items-center">
-                <FontAwesomeIcon className="mr-2" icon={faPhone} />
-                (330) 718-8699
-              </p>
-              <p className="text-white flex justify-start items-center">
-                <FontAwesomeIcon className="mr-2" icon={faLocation} />
-                65 Commings Dr Walton, KY
-              </p>
+            <div className="flex justify-start lg:justify-end">
+              <Button asChild variant="outline">
+                <Link href="/services/">
+                  View all services
+                  <ArrowRight aria-hidden="true" />
+                </Link>
+              </Button>
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* content slider */}
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {homePage.featuredServices.map((service) => (
+              <Card
+                key={service.slug}
+                id={service.slug}
+                className="overflow-hidden transition-shadow hover:shadow-clinic-card"
+              >
+                {service.image ? (
+                  <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+                    <Image
+                      src={service.image}
+                      alt={`${service.title} at ${siteConfig.name}`}
+                      fill
+                      className="object-cover"
+                      sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    />
+                  </div>
+                ) : null}
+                <CardHeader>
+                  <CardTitle className="text-lg">{service.title}</CardTitle>
+                  <CardDescription>{service.summary}</CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </Container>
+      </Section>
 
-      <div className="w-screen h-[750px]  relative">
-        <div className="w-full h-full">
-          {currentSlide === 1 && (
-            <Image className="w-full h-full" src={hallway} alt="hero-img" />
-          )}
-          {currentSlide === 2 && (
-            <Image className="w-full h-full" src={hallwayTwo} alt="hero-img" />
-          )}
-          {currentSlide === 3 && (
-            <Image className="w-full h-full" src={hallway} alt="hero-img" />
-          )}
-        </div>
-        <div
-          id="content-slider"
-          className="w-full h-full absolute bottom-0 z-10 p-10 flex justify-start"
-        >
-          <div className="w-fit h-[90%] bg-[#585858]">
-            <div
-              onClick={() => setCurrentSlide(1)}
-              className={
-                currentSlide === 1
-                  ? `w-[4px] transition-all h-1/3 ml-[-1px] bg-[#e6e6e6]`
-                  : `h-1/3 bg-[#585858]`
-              }
-            ></div>
-            <div
-              onClick={() => setCurrentSlide(2)}
-              className={
-                currentSlide === 2
-                  ? `w-[4px] transition-all h-1/3 ml-[-1px] bg-[#e6e6e6]`
-                  : `h-1/3 bg-[#585858]`
-              }
-            ></div>
-            <div
-              onClick={() => setCurrentSlide(3)}
-              className={
-                currentSlide === 3
-                  ? `w-[4px] transition-all h-1/3 ml-[-1px] bg-[#e6e6e6]`
-                  : `h-1/3 bg-[#585858]`
-              }
-            ></div>
+      <Section tone="muted">
+        <Container>
+          <div className="grid gap-8 lg:grid-cols-3">
+            {approachItems.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <Card key={item.title} className="border-transparent shadow-sm">
+                  <CardHeader>
+                    <span className="mb-2 flex size-11 items-center justify-center rounded-md bg-secondary text-primary">
+                      <Icon className="size-5" aria-hidden="true" />
+                    </span>
+                    <CardTitle>{item.title}</CardTitle>
+                    <CardDescription>{item.description}</CardDescription>
+                  </CardHeader>
+                </Card>
+              );
+            })}
           </div>
-          <div className="w-full h-[90%] flex flex-col justify-end mt-[-5%] pl-10">
-            <h1 className="text-white">
-              <span className="text-[2em]">{currentSlide}</span>
-              <span className="text-[1.5em] text-[#b9b9b9]">/</span>
-              <span className="text-[1.5em] text-[#b9b9b9]">3</span>
-            </h1>
-            <div className="w-full overflow-hidden">
-              <h1 className="text-[2em] font-bold text-white">
-                {content[currentSlide - 1]?.title}
-              </h1>
-              <p className="w-[60%] h-fit text-[#dedede] break-words text-sm">
-                {content[currentSlide - 1]?.content}
-              </p>
+        </Container>
+      </Section>
+
+      <Section>
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-center">
+            <div>
+              <SectionHeading
+                eyebrow="Access"
+                title="Book directly with the clinic."
+                description="Call, WhatsApp, or email the team with your symptoms, preferred appointment time, and the type of physiotherapy support you need."
+              />
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-lg">
+                      <Users className="size-5 text-primary" aria-hidden="true" />
+                      Insurance accepted
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      {homePage.insuranceAccepted.map((item) => (
+                        <li key={item} className="flex items-center gap-2">
+                          <BadgeCheck
+                            className="size-4 text-primary"
+                            aria-hidden="true"
+                          />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-lg">
+                      <MapPin className="size-5 text-primary" aria-hidden="true" />
+                      Visit the clinic
+                    </CardTitle>
+                    <CardDescription>{fullAddress}</CardDescription>
+                  </CardHeader>
+                </Card>
+              </div>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Button asChild>
+                  <a href={contactActions.appointmentHref}>
+                    <CalendarDays aria-hidden="true" />
+                    Book by phone
+                  </a>
+                </Button>
+                <Button asChild variant="outline">
+                  <a href={contactActions.emailHref}>Email your request</a>
+                </Button>
+              </div>
             </div>
-            <div className="mt-[20px]">
-              <button
-                onClick={() => {
-                  if (currentSlide > 1) {
-                    setCurrentSlide(currentSlide - 1);
-                  }
-                }}
-              >
-                <FontAwesomeIcon
-                  className="text-white border border-white p-4 rounded-[50%] hover:bg-white hover:text-black"
-                  icon={faArrowLeft}
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-lg border border-border bg-muted shadow-soft">
+                <Image
+                  src={promoImages.insuranceAccepted}
+                  alt={imageAltText.insuranceAccepted}
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 36vw, 100vw"
                 />
-              </button>
-              <button
-                onClick={() => {
-                  if (currentSlide < 3) {
-                    setCurrentSlide(currentSlide + 1);
-                  }
-                }}
-              >
-                <FontAwesomeIcon
-                  className="text-white border border-white p-4 rounded-[50%] ml-2 hover:bg-white hover:text-black"
-                  icon={faArrowRight}
-                />
-              </button>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </Container>
+      </Section>
     </>
   );
 }

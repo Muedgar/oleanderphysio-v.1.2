@@ -1,238 +1,170 @@
-"use client";
-
-import "../../styles/foundation.css";
-import hall from "../../assets/hallway_1.avif";
 import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
+import { ArrowRight, CheckCircle2, HeartPulse } from "lucide-react";
+
 import {
-  faArrowAltCircleLeft,
-  faArrowAltCircleRight,
-} from "@fortawesome/free-regular-svg-icons";
-import { useState } from "react";
+  contactActions,
+  promoImages,
+  servicesPage,
+  siteConfig,
+} from "../../../content";
+import { createPageMetadata } from "@/lib/seo";
+import { Container } from "@/components/layout/container";
+import { PageHero } from "@/components/layout/page-hero";
+import { Section } from "@/components/layout/section";
+import { SectionHeading } from "@/components/layout/section-heading";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+export const metadata = createPageMetadata("services");
+
 export default function Services() {
-  const [serviceOne, setServiceOne] = useState(false);
-  const [serviceTwo, setServiceTwo] = useState(false);
-  const [serviceThree, setServiceThree] = useState(false);
-  const [serviceFour, setServiceFour] = useState(false);
-  const [serviceFive, setServiceFive] = useState(false);
-  const [serviceSix, setServiceSix] = useState(false);
-  const [serviceSeven, setServiceSeven] = useState(false);
-  const [serviceEight, setServiceEight] = useState(false);
-  const [serviceNine, setServiceNine] = useState(false);
-  const [serviceTen, setServiceTen] = useState(false);
-  const [serviceEleven, setServiceEleven] = useState(false);
-  const [serviceTwelve, setServiceTwelve] = useState(false);
-
   return (
-    <div className="foundation w-screen h-fit">
-      <div className="w-full h-fit flex justify-start items-start relative p-10">
-        <p className="w-1/3 break-words text-[2em] ml-20 pl-10">
-          Innovation Meets Expertise In Our Range Of Services
-        </p>
-      </div>
-      <div className="w-full h-fit">
-        <Image
-          src={hall}
-          alt="hallway"
-          className="w-full h-[400px] object-fill"
-        />
-      </div>
-      <div className="w-full h-fit flex justify-start items-start relative p-10">
-        <p className="w-full break-words text-[1.5em] ml-20 pl-10">
-          Our Services And Works
-        </p>
-      </div>
-      <div className="w-full h-fit overflow-hidden pr-20 pl-20 pb-20">
-        <div className="w-full h-fit m-auto bg-slate-200">
-          <div
-            onClick={() => setServiceOne(!serviceOne)}
-            className="bg-slate-200 relative w-full h-[70px] flex justify-between items-center p-5 border-t-2 border-b-2 border-slate-100 cursor-pointer"
-          >
-            <h4 className="text-[1.5em]">UI/UX Design</h4>
-            <FontAwesomeIcon
-              className="text-[2em]"
-              icon={faArrowAltCircleRight}
-            />
-          </div>
-          {serviceOne && (
-            <p className="break-words w-full h-fit p-10">
-              asdfkjas;dkljf;askldjfaiosjnvpqwuiefpoiqwdfmnauvpqwijf8qhwpeuifhoqgyrwgoquwieryhjfnpqwuhesfjnsduhnvalufshdjalsjdfhuiqvnawresjfpuivnqewurgpquerihfgbqyeriuhfqnulwaidskjhfvfdlaxdjvn,xzcmvbkqekryufhpuijsdafnblasdufjh
-            </p>
-          )}
-        </div>
+    <>
+      <PageHero
+        eyebrow="Our services"
+        title={servicesPage.title}
+        description={servicesPage.intro}
+        image={promoImages.servicesOverview}
+        imageAlt={`${siteConfig.name} services overview poster`}
+      />
 
-        <div className="w-full h-fit m-auto bg-slate-200">
-          <div
-            onClick={() => setServiceTwo(!serviceTwo)}
-            className="bg-slate-200 relative w-full h-[70px] flex justify-between items-center p-5 border-t-2 border-b-2 border-slate-100 cursor-pointer"
-          >
-            <h4 className="text-[1.5em]">UI/UX Design</h4>
-            <FontAwesomeIcon
-              className="text-[2em]"
-              icon={faArrowAltCircleRight}
-            />
-          </div>
-          {serviceTwo && (
-            <p className="break-words w-full h-fit p-5">
-              asdfkjas;dkljf;askldjfaiosjnvpqwuiefpoiqwdfmnauvpqwijf8qhwpeuifhoqgyrwgoquwieryhjfnpqwuhesfjnsduhnvalufshdjalsjdfhuiqvnawresjfpuivnqewurgpquerihfgbqyeriuhfqnulwaidskjhfvfdlaxdjvn,xzcmvbkqekryufhpuijsdafnblasdufjh
-            </p>
-          )}
-        </div>
+      <Section>
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+            <aside className="lg:sticky lg:top-32 lg:self-start">
+              <Card className="bg-secondary">
+                <CardHeader>
+                  <CardTitle>Find a service</CardTitle>
+                  <CardDescription>
+                    Choose a care area and contact the clinic if you are unsure
+                    which service fits your needs.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap gap-2">
+                    {servicesPage.services.map((service) => (
+                      <a
+                        key={service.slug}
+                        href={`#${service.slug}`}
+                        className="focus-ring rounded-md bg-background px-3 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
+                      >
+                        {service.shortTitle}
+                      </a>
+                    ))}
+                  </div>
+                  <Button asChild className="mt-6 w-full">
+                    <a href={contactActions.appointmentHref}>
+                      Book an appointment
+                      <ArrowRight aria-hidden="true" />
+                    </a>
+                  </Button>
+                </CardContent>
+              </Card>
+            </aside>
 
-        <div className="w-full h-fit m-auto bg-slate-200">
-          <div
-            onClick={() => setServiceThree(!serviceThree)}
-            className="bg-slate-200 relative w-full h-[70px] flex justify-between items-center p-5 border-t-2 border-b-2 border-slate-100 cursor-pointer"
-          >
-            <h4 className="text-[1.5em]">UI/UX Design</h4>
-            <FontAwesomeIcon
-              className="text-[2em]"
-              icon={faArrowAltCircleRight}
-            />
+            <div className="grid gap-6">
+              {servicesPage.services.map((service) => (
+                <Card
+                  key={service.slug}
+                  id={service.slug}
+                  className="scroll-mt-32 overflow-hidden"
+                >
+                  <div className="grid gap-0 md:grid-cols-[0.9fr_1.1fr]">
+                    {service.image ? (
+                      <div className="relative min-h-72 bg-muted md:min-h-full">
+                        <Image
+                          src={service.image}
+                          alt={`${service.title} at ${siteConfig.name}`}
+                          fill
+                          className="object-cover"
+                          sizes="(min-width: 1024px) 34vw, 100vw"
+                        />
+                      </div>
+                    ) : (
+                      <div className="flex min-h-72 items-center justify-center bg-clinic-hero p-8">
+                        <HeartPulse
+                          className="size-16 text-primary"
+                          aria-hidden="true"
+                        />
+                      </div>
+                    )}
+                    <div>
+                      <CardHeader>
+                        <Badge variant="secondary" className="w-fit">
+                          {service.shortTitle}
+                        </Badge>
+                        <CardTitle className="text-2xl">
+                          {service.title}
+                        </CardTitle>
+                        <CardDescription>{service.summary}</CardDescription>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        {service.description.map((paragraph) => (
+                          <p
+                            key={paragraph}
+                            className="leading-7 text-muted-foreground"
+                          >
+                            {paragraph}
+                          </p>
+                        ))}
+                        {service.examples?.length ? (
+                          <div>
+                            <h2 className="text-sm font-bold uppercase tracking-normal text-foreground">
+                              Common examples
+                            </h2>
+                            <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+                              {service.examples.map((example) => (
+                                <li
+                                  key={example}
+                                  className="flex items-start gap-2 text-sm text-muted-foreground"
+                                >
+                                  <CheckCircle2
+                                    className="mt-0.5 size-4 shrink-0 text-primary"
+                                    aria-hidden="true"
+                                  />
+                                  {example}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ) : null}
+                      </CardContent>
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
           </div>
-          {serviceThree && (
-            <p className="break-words w-full h-fit p-10">
-              asdfkjas;dkljf;askldjfaiosjnvpqwuiefpoiqwdfmnauvpqwijf8qhwpeuifhoqgyrwgoquwieryhjfnpqwuhesfjnsduhnvalufshdjalsjdfhuiqvnawresjfpuivnqewurgpquerihfgbqyeriuhfqnulwaidskjhfvfdlaxdjvn,xzcmvbkqekryufhpuijsdafnblasdufjh
-            </p>
-          )}
-        </div>
-        <div className="w-full h-fit m-auto bg-slate-200">
-          <div
-            onClick={() => setServiceFour(!serviceFour)}
-            className="bg-slate-200 relative w-full h-[70px] flex justify-between items-center p-5 border-t-2 border-b-2 border-slate-100 cursor-pointer"
-          >
-            <h4 className="text-[1.5em]">UI/UX Design</h4>
-            <FontAwesomeIcon
-              className="text-[2em]"
-              icon={faArrowAltCircleRight}
+        </Container>
+      </Section>
+
+      <Section tone="muted">
+        <Container>
+          <div className="grid gap-8 rounded-lg bg-card p-6 shadow-sm md:grid-cols-[1fr_auto] md:items-center md:p-8">
+            <SectionHeading
+              eyebrow="Next step"
+              title="Not sure where to start?"
+              description="Share what you are experiencing and the clinic team can guide you toward the most suitable appointment."
             />
+            <div className="flex flex-col gap-3 sm:flex-row md:flex-col">
+              <Button asChild>
+                <a href={contactActions.appointmentHref}>Call the clinic</a>
+              </Button>
+              <Button asChild variant="outline">
+                <Link href="/contact/">Contact options</Link>
+              </Button>
+            </div>
           </div>
-          {serviceFour && (
-            <p className="break-words w-full h-fit p-10">
-              asdfkjas;dkljf;askldjfaiosjnvpqwuiefpoiqwdfmnauvpqwijf8qhwpeuifhoqgyrwgoquwieryhjfnpqwuhesfjnsduhnvalufshdjalsjdfhuiqvnawresjfpuivnqewurgpquerihfgbqyeriuhfqnulwaidskjhfvfdlaxdjvn,xzcmvbkqekryufhpuijsdafnblasdufjh
-            </p>
-          )}
-        </div>
-        <div className="w-full h-fit m-auto bg-slate-200">
-          <div
-            onClick={() => setServiceFive(!serviceFive)}
-            className="bg-slate-200 relative w-full h-[70px] flex justify-between items-center p-5 border-t-2 border-b-2 border-slate-100 cursor-pointer"
-          >
-            <h4 className="text-[1.5em]">UI/UX Design</h4>
-            <FontAwesomeIcon
-              className="text-[2em]"
-              icon={faArrowAltCircleRight}
-            />
-          </div>
-          {serviceFive && (
-            <p className="break-words w-full h-fit p-10">
-              asdfkjas;dkljf;askldjfaiosjnvpqwuiefpoiqwdfmnauvpqwijf8qhwpeuifhoqgyrwgoquwieryhjfnpqwuhesfjnsduhnvalufshdjalsjdfhuiqvnawresjfpuivnqewurgpquerihfgbqyeriuhfqnulwaidskjhfvfdlaxdjvn,xzcmvbkqekryufhpuijsdafnblasdufjh
-            </p>
-          )}
-        </div>
-        <div className="w-full h-fit m-auto bg-slate-200">
-          <div
-            onClick={() => setServiceSix(!serviceSix)}
-            className="bg-slate-200 relative w-full h-[70px] flex justify-between items-center p-5 border-t-2 border-b-2 border-slate-100 cursor-pointer"
-          >
-            <h4 className="text-[1.5em]">UI/UX Design</h4>
-            <FontAwesomeIcon
-              className="text-[2em]"
-              icon={faArrowAltCircleRight}
-            />
-          </div>
-          {serviceSix && (
-            <p className="break-words w-full h-fit p-10">
-              asdfkjas;dkljf;askldjfaiosjnvpqwuiefpoiqwdfmnauvpqwijf8qhwpeuifhoqgyrwgoquwieryhjfnpqwuhesfjnsduhnvalufshdjalsjdfhuiqvnawresjfpuivnqewurgpquerihfgbqyeriuhfqnulwaidskjhfvfdlaxdjvn,xzcmvbkqekryufhpuijsdafnblasdufjh
-            </p>
-          )}
-        </div>
-        <div className="w-full h-fit m-auto bg-slate-200">
-          <div
-            onClick={() => setServiceSeven(!serviceSeven)}
-            className="bg-slate-200 relative w-full h-[70px] flex justify-between items-center p-5 border-t-2 border-b-2 border-slate-100 cursor-pointer"
-          >
-            <h4 className="text-[1.5em]">UI/UX Design</h4>
-            <FontAwesomeIcon
-              className="text-[2em]"
-              icon={faArrowAltCircleRight}
-            />
-          </div>
-          {serviceSeven && (
-            <p className="break-words w-full h-fit p-10">
-              asdfkjas;dkljf;askldjfaiosjnvpqwuiefpoiqwdfmnauvpqwijf8qhwpeuifhoqgyrwgoquwieryhjfnpqwuhesfjnsduhnvalufshdjalsjdfhuiqvnawresjfpuivnqewurgpquerihfgbqyeriuhfqnulwaidskjhfvfdlaxdjvn,xzcmvbkqekryufhpuijsdafnblasdufjh
-            </p>
-          )}
-        </div>
-        <div className="w-full h-fit m-auto bg-slate-200">
-          <div
-            onClick={() => setServiceEight(!serviceEight)}
-            className="bg-slate-200 relative w-full h-[70px] flex justify-between items-center p-5 border-t-2 border-b-2 border-slate-100 cursor-pointer"
-          >
-            <h4 className="text-[1.5em]">UI/UX Design</h4>
-            <FontAwesomeIcon
-              className="text-[2em]"
-              icon={faArrowAltCircleRight}
-            />
-          </div>
-          {serviceEight && (
-            <p className="break-words w-full h-fit p-10">
-              asdfkjas;dkljf;askldjfaiosjnvpqwuiefpoiqwdfmnauvpqwijf8qhwpeuifhoqgyrwgoquwieryhjfnpqwuhesfjnsduhnvalufshdjalsjdfhuiqvnawresjfpuivnqewurgpquerihfgbqyeriuhfqnulwaidskjhfvfdlaxdjvn,xzcmvbkqekryufhpuijsdafnblasdufjh
-            </p>
-          )}
-        </div>
-        <div className="w-full h-fit m-auto bg-slate-200">
-          <div
-            onClick={() => setServiceNine(!serviceNine)}
-            className="bg-slate-200 relative w-full h-[70px] flex justify-between items-center p-5 border-t-2 border-b-2 border-slate-100 cursor-pointer"
-          >
-            <h4 className="text-[1.5em]">UI/UX Design</h4>
-            <FontAwesomeIcon
-              className="text-[2em]"
-              icon={faArrowAltCircleRight}
-            />
-          </div>
-          {serviceNine && (
-            <p className="break-words w-full h-fit p-10">
-              asdfkjas;dkljf;askldjfaiosjnvpqwuiefpoiqwdfmnauvpqwijf8qhwpeuifhoqgyrwgoquwieryhjfnpqwuhesfjnsduhnvalufshdjalsjdfhuiqvnawresjfpuivnqewurgpquerihfgbqyeriuhfqnulwaidskjhfvfdlaxdjvn,xzcmvbkqekryufhpuijsdafnblasdufjh
-            </p>
-          )}
-        </div>
-        <div className="w-full h-fit m-auto bg-slate-200">
-          <div
-            onClick={() => setServiceTen(!serviceTen)}
-            className="bg-slate-200 relative w-full h-[70px] flex justify-between items-center p-5 border-t-2 border-b-2 border-slate-100 cursor-pointer"
-          >
-            <h4 className="text-[1.5em]">UI/UX Design</h4>
-            <FontAwesomeIcon
-              className="text-[2em]"
-              icon={faArrowAltCircleRight}
-            />
-          </div>
-          {serviceTen && (
-            <p className="break-words w-full h-fit p-10">
-              asdfkjas;dkljf;askldjfaiosjnvpqwuiefpoiqwdfmnauvpqwijf8qhwpeuifhoqgyrwgoquwieryhjfnpqwuhesfjnsduhnvalufshdjalsjdfhuiqvnawresjfpuivnqewurgpquerihfgbqyeriuhfqnulwaidskjhfvfdlaxdjvn,xzcmvbkqekryufhpuijsdafnblasdufjh
-            </p>
-          )}
-        </div>
-        <div className="w-full h-fit m-auto bg-slate-200">
-          <div
-            onClick={() => setServiceEleven(!serviceEleven)}
-            className="bg-slate-200 relative w-full h-[70px] flex justify-between items-center p-5 border-t-2 border-b-2 border-slate-100 cursor-pointer"
-          >
-            <h4 className="text-[1.5em]">UI/UX Design</h4>
-            <FontAwesomeIcon
-              className="text-[2em]"
-              icon={faArrowAltCircleRight}
-            />
-          </div>
-          {serviceEleven && (
-            <p className="break-words w-full h-fit p-10">
-              asdfkjas;dkljf;askldjfaiosjnvpqwuiefpoiqwdfmnauvpqwijf8qhwpeuifhoqgyrwgoquwieryhjfnpqwuhesfjnsduhnvalufshdjalsjdfhuiqvnawresjfpuivnqewurgpquerihfgbqyeriuhfqnulwaidskjhfvfdlaxdjvn,xzcmvbkqekryufhpuijsdafnblasdufjh
-            </p>
-          )}
-        </div>
-      </div>
-    </div>
+        </Container>
+      </Section>
+    </>
   );
 }

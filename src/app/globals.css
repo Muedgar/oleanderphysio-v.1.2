@@ -2,3 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 180 45% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 180 45% 11%;
+    --primary: 174 61% 44%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 176 47% 93%;
+    --secondary-foreground: 180 45% 11%;
+    --muted: 180 14% 96%;
+    --muted-foreground: 178 14% 38%;
+    --accent: 49 91% 61%;
+    --accent-foreground: 180 45% 11%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 180 18% 88%;
+    --input: 180 18% 88%;
+    --ring: 174 61% 44%;
+    --radius: 0.5rem;
+    --font-sans: Arial, Helvetica, sans-serif;
+    --font-display: Arial, Helvetica, sans-serif;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
+}
+
+@layer components {
+  .focus-ring {
+    @apply outline-none ring-offset-2 ring-offset-background focus-visible:ring-2 focus-visible:ring-ring;
+  }
+}

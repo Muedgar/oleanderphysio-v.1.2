@@ -1,82 +1,151 @@
-import "../../styles/foundation.css";
-import hall from "../../assets/hallway_1.avif";
-import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
+import {
+  Activity,
+  ArrowRight,
+  BriefcaseMedical,
+  HandHeart,
+  HelpingHand,
+} from "lucide-react";
+
+import {
+  contactActions,
+  foundationPage,
+  services,
+  siteConfig,
+} from "../../../content";
+import { createPageMetadata } from "@/lib/seo";
+import { Container } from "@/components/layout/container";
+import { PageHero } from "@/components/layout/page-hero";
+import { Section } from "@/components/layout/section";
+import { SectionHeading } from "@/components/layout/section-heading";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+export const metadata = createPageMetadata("foundation");
+
+const communityServices = services.filter((service) =>
+  [
+    "community-physiotherapy",
+    "health-promotion-wellness",
+    "assistive-devices-aids",
+    "occupational-health-ergonomics",
+  ].includes(service.slug),
+);
+
+const supportAreas = [
+  {
+    title: "Education and prevention",
+    description:
+      "Helping clients and families understand movement, recovery, injury prevention, and safer daily routines.",
+    icon: HandHeart,
+  },
+  {
+    title: "Workplace wellbeing",
+    description:
+      "Supporting healthier work environments through ergonomic guidance and practical advice.",
+    icon: BriefcaseMedical,
+  },
+  {
+    title: "Accessible recovery",
+    description:
+      "Guidance for exercises, assistive aids, mobility, and support that fits real daily environments.",
+    icon: HelpingHand,
+  },
+] as const;
+
 export default function Foundation() {
   return (
-    <div className="foundation w-screen h-fit">
-      <div className="w-full h-fit flex justify-start items-start relative p-10">
-        <p className="w-1/3 break-words text-[2em] ml-20 pl-10">
-          Stay connected with <span className="text-green-400">TeamChat</span>,
-          your all-in-one chat app
-        </p>
-      </div>
-      <div className="w-full h-fit">
-        <Image
-          src={hall}
-          alt="hallway"
-          className="w-full h-[400px] object-fill"
-        />
-      </div>
-      <div className="foundation_about w-full h-[600px] relative">
-        <div className="w-1/2 h-[400px] bg-green-400 absolute left-20 top-[-150px] rounded-[20px] shadow-lg">
-          <p className="text-slate-800 text-[3em] font-regular m-4">
-            About Foundation
-          </p>
-          <p className="w-[80%] break-words font-thin text-[1.5em] m-4">
-            asdfjaskdfjoviamsvd;kasdjoivquenrpubqnwe;ofiaijavd;kasdjoivquenrpubqnwe;ofiaijavd;kasdjoivquenrpubqnwe;ofiaijavd;kasdjoivquenrpubqnwe;ofiaijavd;kasdjoivquenrpubqnwe;ofiaija;oisdjvniaow;enfvp;aosndgfvpaoindvnqwo;efn;asidjfnvasdf
-          </p>
-          <button className="m-4 bg-slate-800 text-white p-4 rounded-md shadow-md shadow-black hover:shadow-sm">
-            Get in touch with us
-          </button>
-        </div>
-      </div>
+    <>
+      <PageHero
+        eyebrow={siteConfig.tagline}
+        title={foundationPage.title}
+        description={foundationPage.intro}
+      />
 
-      <div className="foundation_mission w-full h-fit relative">
-        <div className="absolute left-[200px] top-[-100px] w-[200px] h-[200px] border border-black rounded-[50%] flex justify-center items-center p-4">
-          <p className="text-[1.5em] font-thin m-1">Scroll Down</p>
-          <FontAwesomeIcon
-            className="text-[1.5em] animate animate-bounce"
-            icon={faArrowDown}
+      <Section>
+        <Container>
+          <div className="grid gap-8 lg:grid-cols-2">
+            {foundationPage.sections.map((section) => (
+              <Card key={section.title}>
+                <CardHeader>
+                  <CardTitle>{section.title}</CardTitle>
+                  <CardDescription>{section.body}</CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      <Section tone="muted">
+        <Container>
+          <SectionHeading
+            align="center"
+            eyebrow="Community support"
+            title="Care that reaches beyond a single appointment."
+            description="Community-focused physiotherapy connects treatment with education, confidence, prevention, and practical day-to-day support."
           />
-        </div>
-        <div className="w-1/2 h-[400px] bg-slate-400 absolute right-20 top-[-250px] rounded-[20px] shadow-lg">
-          <p className="text-slate-800 text-[3em] font-regular m-4">
-            Our Mission
-          </p>
-          <p className="w-[80%] break-words font-thin text-[1.5em] m-4">
-            asdfjaskdfjoviamsvd;kasdjoivquenrpubqnwe;ofiaijavd;kasdjoivquenrpubqnwe;ofiaijavd;kasdjoivquenrpubqnwe;ofiaijavd;kasdjoivquenrpubqnwe;ofiaijavd;kasdjoivquenrpubqnwe;ofiaija;oisdjvniaow;enfvp;aosndgfvpaoindvnqwo;efn;asidjfnvasdf
-          </p>
-          <button className="m-4 bg-white text-slate-800 p-4 rounded-md shadow-md shadow-black hover:shadow-sm">
-            Get in touch with us
-          </button>
-        </div>
-      </div>
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            {supportAreas.map((area) => {
+              const Icon = area.icon;
 
-      <div className="w-full h-fit flex flex-col justify-center items-center mt-[250px]">
-        <p className="text-2xl text-slate-800">Our Values</p>
-        <div className="w-full h-fit flex flex-col justify-center items-center">
-          <div className="values mt-4 mb-4 w-[50%] h-fit  bg-slate-200 p-2 rounded-[20px]">
-            <h5 className="font-bold p-5">User Friendly</h5>
-            <p className="break-words p-5">
-              sdfjaskdfjoviamsvd;kasdjoivquenrpubqnwe;ofiaijavd;kasdjoivquenrpubqnwe;ofiaijavd;kasdjoivquenrpubqnwe;ofiaijavd;kasdjoivquenrpubqnwe;ofiaijavd;kasdjoiv
-            </p>
+              return (
+                <Card key={area.title}>
+                  <CardHeader>
+                    <span className="mb-2 flex size-11 items-center justify-center rounded-md bg-secondary text-primary">
+                      <Icon className="size-5" aria-hidden="true" />
+                    </span>
+                    <CardTitle>{area.title}</CardTitle>
+                    <CardDescription>{area.description}</CardDescription>
+                  </CardHeader>
+                </Card>
+              );
+            })}
           </div>
-          <div className="values mt-4 mb-4 w-[50%] h-fit  bg-slate-200 p-2 rounded-[20px]">
-            <h5 className="font-bold p-5">User Friendly</h5>
-            <p className="break-words p-5">
-              sdfjaskdfjoviamsvd;kasdjoivquenrpubqnwe;ofiaijavd;kasdjoivquenrpubqnwe;ofiaijavd;kasdjoivquenrpubqnwe;ofiaijavd;kasdjoivquenrpubqnwe;ofiaijavd;kasdjoiv
-            </p>
+        </Container>
+      </Section>
+
+      <Section>
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+            <SectionHeading
+              eyebrow="Related services"
+              title="Support for homes, workplaces, and everyday movement."
+              description="These services are especially relevant for prevention, education, accessibility, community recovery, and wellness."
+            />
+            <div className="grid gap-5 sm:grid-cols-2">
+              {communityServices.map((service) => (
+                <Card key={service.slug}>
+                  <CardHeader>
+                    <Activity
+                      className="mb-2 size-6 text-primary"
+                      aria-hidden="true"
+                    />
+                    <CardTitle className="text-xl">{service.title}</CardTitle>
+                    <CardDescription>{service.summary}</CardDescription>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
           </div>
-          <div className="values mt-4 mb-4 w-[50%] h-fit  bg-slate-200 p-2 rounded-[20px]">
-            <h5 className="font-bold p-5">User Friendly</h5>
-            <p className="break-words p-5">
-              sdfjaskdfjoviamsvd;kasdjoivquenrpubqnwe;ofiaijavd;kasdjoivquenrpubqnwe;ofiaijavd;kasdjoivquenrpubqnwe;ofiaijavd;kasdjoivquenrpubqnwe;ofiaijavd;kasdjoiv
-            </p>
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <Button asChild>
+              <a href={contactActions.appointmentHref}>Book an appointment</a>
+            </Button>
+            <Button asChild variant="outline">
+              <Link href="/services/">
+                View services
+                <ArrowRight aria-hidden="true" />
+              </Link>
+            </Button>
           </div>
-        </div>
-      </div>
-    </div>
+        </Container>
+      </Section>
+    </>
   );
 }

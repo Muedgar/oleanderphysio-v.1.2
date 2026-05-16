@@ -1,16 +1,54 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import TransitionLink from "../components/TransitionLink";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+
+import { mainNavigation, siteConfig } from "../../../content";
+import { Container } from "@/components/layout/container";
+import { PageHero } from "@/components/layout/page-hero";
+import { Section } from "@/components/layout/section";
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+
+export const metadata: Metadata = {
+  title: "Menu",
+  description: `Navigate ${siteConfig.name}.`,
+  alternates: {
+    canonical: "/menu/",
+  },
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
 
 export default function MenuPage() {
   return (
-    <div className="fixed top-0 left-0 z-[100] bg-white w-screen h-screen">
-      <ul className="m-auto w-full h-full flex flex-col justify-evenly items-center">
-        <TransitionLink href="/" label="Home" />
-        <TransitionLink href="/about" label="About" />
-        <TransitionLink href="/services" label="Services" />
-        <TransitionLink href="/contact" label="Contact" />
-      </ul>
-    </div>
+    <>
+      <PageHero
+        eyebrow={siteConfig.tagline}
+        title="Menu"
+        description="Quick links to clinic information, services, community care, and contact options."
+      />
+      <Section>
+        <Container>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {mainNavigation.map((item) => (
+              <Card key={item.href}>
+                <CardHeader>
+                  <CardTitle className="flex items-center justify-between gap-4 text-xl">
+                    {item.label}
+                    <Button asChild variant="ghost" size="icon">
+                      <Link href={item.href} aria-label={`Open ${item.label}`}>
+                        <ArrowRight aria-hidden="true" />
+                      </Link>
+                    </Button>
+                  </CardTitle>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </Container>
+      </Section>
+    </>
   );
 }
