@@ -54,4 +54,60 @@
   .focus-ring {
     @apply outline-none ring-offset-2 ring-offset-background focus-visible:ring-2 focus-visible:ring-ring;
   }
+
+  .editorial-section {
+    @apply py-20 md:py-28 lg:py-32;
+  }
+
+  .editorial-section-large {
+    @apply py-24 md:py-36;
+  }
+
+  .editorial-eyebrow {
+    @apply text-sm font-bold uppercase tracking-normal text-primary;
+  }
+
+  .editorial-title {
+    @apply font-display text-4xl font-bold leading-[1.05] tracking-normal text-foreground md:text-6xl;
+  }
+
+  .editorial-title-large {
+    @apply font-display text-4xl font-bold leading-[1.04] tracking-normal text-foreground md:text-6xl lg:text-7xl;
+  }
+
+  .editorial-hero-title {
+    @apply font-display text-4xl font-bold leading-[1.02] tracking-normal text-white sm:text-5xl md:text-7xl md:leading-[0.98] lg:text-8xl;
+  }
+
+  .editorial-copy {
+    @apply text-base leading-8 text-muted-foreground md:text-lg;
+  }
+
+  .editorial-copy-large {
+    @apply text-base leading-8 text-muted-foreground md:text-xl md:leading-9;
+  }
+
+  .editorial-image-frame {
+    @apply relative overflow-hidden rounded-lg bg-muted shadow-soft;
+  }
+
+  .editorial-image {
+    @apply object-cover saturate-[0.92] contrast-[0.96];
+  }
+
+  .editorial-grid-lines {
+    @apply overflow-hidden rounded-lg border border-border bg-border;
+  }
+
+  [data-reveal] {
+    will-change: transform, opacity;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+      opacity: 1 !important;
+      transform: none !important;
+      will-change: auto;
+    }
+  }
 }

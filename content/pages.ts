@@ -2,16 +2,58 @@ import { promoImages } from "./assets";
 import { featuredServices, services } from "./services";
 import { siteConfig } from "./site";
 
+export const careModes = [
+  {
+    title: "Restore",
+    description:
+      "Calm, focused care for pain recovery, injury rehabilitation, and post-operative movement.",
+    services: [
+      "Sports physiotherapy",
+      "Orthopedic physiotherapy",
+      "Pain and mobility support",
+    ],
+  },
+  {
+    title: "Strengthen",
+    description:
+      "Guided movement that rebuilds control, conditioning, and confidence in daily activity.",
+    services: ["Exercise therapy", "Fitness conditioning", "Wellness support"],
+  },
+  {
+    title: "Rebalance",
+    description:
+      "Support for posture, balance, coordination, breathing, and the movements that make life feel easier.",
+    services: [
+      "Neurological physiotherapy",
+      "Geriatric physiotherapy",
+      "Ergonomics and workplace health",
+    ],
+  },
+] as const;
+
 export const homePage = {
   eyebrow: siteConfig.tagline,
-  title: "Physiotherapy care for recovery, movement, and everyday wellbeing.",
+  title: "Move without fear again.",
   intro:
-    "Oleander Physio Clinic provides specialist physiotherapy services in Bakau for people recovering from injury, managing pain, rebuilding strength, or looking for professional movement support.",
+    "Specialist physiotherapy in Bakau for recovery, strength, and confident movement.",
   heroImage: promoImages.appointment,
+  recoveryStatement: {
+    kicker: "Recovery, reimagined",
+    title: "Recovery is not rushed. It is guided, strengthened, and rebuilt.",
+    description:
+      "Oleander Physio Clinic supports people recovering from pain, injury, surgery, neurological change, and everyday movement limitations with care shaped around the body they want to return to.",
+  },
+  careModes,
+  imageMoment: {
+    title: "Every plan begins with understanding how you move.",
+    description:
+      "Assessment, hands-on treatment, education, and progressive exercise come together to help you move with less pain and more trust in your body.",
+    image: promoImages.appointment,
+  },
   highlights: [
-    "Sports and musculoskeletal rehabilitation",
-    "Neurological, paediatric, geriatric, and women's health physiotherapy",
-    "Cardiorespiratory care, workplace ergonomics, wellness, and fitness conditioning",
+    "Restore movement after pain, injury, or surgery",
+    "Strengthen mobility, balance, and everyday confidence",
+    "Rebalance posture, breathing, work habits, and long-term wellbeing",
   ],
   featuredServices,
   insuranceIntro: "Insurance accepted",
