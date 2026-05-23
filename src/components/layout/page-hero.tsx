@@ -41,14 +41,14 @@ export function PageHero({
       <Container className="py-16 md:py-24">
         <div className="max-w-3xl">
           {eyebrow ? (
-            <p className="mb-4 text-sm font-bold uppercase tracking-normal text-primary">
+            <p className="editorial-eyebrow mb-5">
               {eyebrow}
             </p>
           ) : null}
-          <h1 className="font-display text-4xl font-bold leading-tight md:text-6xl">
+          <h1 className="font-display text-5xl font-semibold leading-[1.03] tracking-normal md:text-7xl">
             {title}
           </h1>
-          <p className="mt-6 text-base leading-8 text-white/82 md:text-lg">
+          <p className="mt-7 max-w-2xl text-base leading-8 text-white/82 md:text-xl md:leading-9">
             {description}
           </p>
         </div>

@@ -72,7 +72,7 @@ export function CareModes({
               <p className="text-sm font-bold text-primary">
                 {String(index + 1).padStart(2, "0")}
               </p>
-              <h3 className="mt-8 font-display text-3xl font-bold leading-none text-foreground md:text-4xl">
+              <h3 className="mt-8 font-display text-3xl font-semibold leading-none tracking-normal text-foreground md:text-4xl">
                 {mode.title}
               </h3>
               <p className="mt-5 min-h-24 text-base leading-7 text-muted-foreground">

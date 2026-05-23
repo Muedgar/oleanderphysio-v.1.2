@@ -4,10 +4,14 @@ import { contactInfo, fullAddress } from "./contact";
 export const siteConfig = {
   name: "Oleander Physio Clinic",
   legalName: "Oleander Physio Clinic",
-  alternateNames: ["Oleander Physio", "Oleander Physio Clinic Gambia"],
+  alternateNames: [
+    "Oleander Physio",
+    "Oleander Physio Clinic Gambia",
+    "Oleander Physio Clinic Rwanda",
+  ],
   tagline: "Your Path To Recovery",
   description:
-    "Oleander Physio Clinic is a physiotherapy clinic in Bakau, The Gambia, offering rehabilitation, recovery support, wellness care, and specialist physiotherapy services.",
+    "Oleander Physio Clinic is a Pan-African rehabilitation center advancing modern physiotherapy and movement care across Africa.",
   locale: "en_GM",
   siteUrl: "https://www.oleanderphysio.com",
   logo: brandAssets.logo,
@@ -17,12 +21,28 @@ export const siteConfig = {
   address: fullAddress,
   foundingLocation: "Bakau, The Gambia",
   insuranceAccepted: ["Central Bank of The Gambia", "GamSwitch"],
+  locations: [
+    {
+      name: "Oleander Physio Clinic Gambia",
+      country: "The Gambia",
+      status: "Serving patients in Bakau",
+      address: fullAddress,
+      insuranceAccepted: ["Central Bank of The Gambia", "GamSwitch"],
+    },
+    {
+      name: "Oleander Physio Clinic Rwanda",
+      country: "Rwanda",
+      status: "Rehabilitation and physiotherapy services expanding soon",
+      address: "Rwanda location details coming soon",
+      insuranceAccepted: [],
+    },
+  ],
   primaryCallToAction: {
-    label: "Book an appointment",
+    label: "Start assessment",
     href: "tel:+2207538791",
   },
   secondaryCallToAction: {
-    label: "Send an email",
+    label: "Tell us what hurts",
     href: "mailto:oleanderphysioclinic@gmail.com",
   },
 } as const;

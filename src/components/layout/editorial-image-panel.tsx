@@ -11,6 +11,7 @@ type EditorialImagePanelProps = {
   description: string;
   image: string;
   imageAlt: string;
+  caption?: string;
   align?: "image-left" | "image-right";
   action?: {
     label: string;
@@ -25,6 +26,7 @@ export function EditorialImagePanel({
   description,
   image,
   imageAlt,
+  caption,
   align = "image-right",
   action,
   className,
@@ -35,20 +37,24 @@ export function EditorialImagePanel({
     <section className={cn("editorial-section bg-background", className)}>
       <Container>
         <div className="grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-center">
-          <div
-            className={cn(
-              "editorial-image-frame aspect-[4/5] md:aspect-[16/11] lg:aspect-[4/5]",
-              imageFirst ? "lg:order-first" : "lg:order-last",
-            )}
-            data-reveal="image"
-          >
-            <Image
-              src={image}
-              alt={imageAlt}
-              fill
-              className="editorial-image"
-              sizes="(min-width: 1024px) 48vw, 100vw"
-            />
+          <div className={cn(imageFirst ? "lg:order-first" : "lg:order-last")}>
+            <div
+              className="editorial-image-frame aspect-[4/5] md:aspect-[16/11] lg:aspect-[4/5]"
+              data-reveal="image"
+            >
+              <Image
+                src={image}
+                alt={imageAlt}
+                fill
+                className="editorial-image"
+                sizes="(min-width: 1024px) 48vw, 100vw"
+              />
+            </div>
+            {caption ? (
+              <p className="mt-4 max-w-md text-sm font-semibold leading-6 text-muted-foreground">
+                {caption}
+              </p>
+            ) : null}
           </div>
 
           <div className="max-w-2xl">

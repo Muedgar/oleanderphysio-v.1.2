@@ -19,25 +19,25 @@ type BookingCloseProps = {
 
 const contactRoutes = [
   {
-    label: "Call",
+    label: "Start by phone",
     value: contactInfo.appointmentPhone,
     href: contactActions.appointmentHref,
     icon: Phone,
   },
   {
-    label: "WhatsApp",
+    label: "Quick message",
     value: contactInfo.appointmentPhone,
     href: contactActions.whatsappHref,
     icon: MessageCircle,
   },
   {
-    label: "Email",
+    label: "Send details",
     value: contactInfo.email,
     href: contactActions.emailHref,
     icon: Mail,
   },
   {
-    label: "Visit",
+    label: "Find the clinic",
     value: fullAddress,
     href: "/contact/",
     icon: MapPin,
@@ -45,9 +45,9 @@ const contactRoutes = [
 ] as const;
 
 export function BookingClose({
-  eyebrow = "Next step",
-  title = "Begin with one calm conversation.",
-  description = "Share what you are experiencing, what you want to return to, and when you would like to be seen. The clinic team will guide you toward the right appointment.",
+  eyebrow = "Leave with a plan",
+  title = "Start with a clear first step.",
+  description = "Tell the clinic what hurts, what has changed, and what you want to return to. Your first assessment helps shape the right recovery plan.",
   className,
 }: BookingCloseProps) {
   return (
@@ -59,7 +59,7 @@ export function BookingClose({
               {eyebrow}
             </p>
             <h2
-              className="mt-5 font-display text-4xl font-bold leading-[1.05] tracking-normal md:text-6xl"
+              className="editorial-title-inverse mt-5"
               data-reveal="lift"
             >
               {title}
@@ -74,7 +74,7 @@ export function BookingClose({
               <Button asChild size="lg">
                 <a href={contactActions.appointmentHref}>
                   <CalendarDays aria-hidden="true" />
-                  Book an appointment
+                  Start your assessment
                 </a>
               </Button>
               <Button
@@ -83,7 +83,7 @@ export function BookingClose({
                 variant="secondary"
                 className="bg-white/12 text-white ring-1 ring-white/24 hover:bg-white hover:text-clinic-ink"
               >
-                <a href={contactActions.emailHref}>Email the clinic</a>
+                <a href={contactActions.emailHref}>Tell us what hurts</a>
               </Button>
             </div>
           </div>
@@ -113,11 +113,18 @@ export function BookingClose({
               })}
             </div>
 
-            {siteConfig.insuranceAccepted.length ? (
-              <p className="mt-5 text-sm leading-6 text-white/62">
-                Insurance accepted: {siteConfig.insuranceAccepted.join(", ")}.
-              </p>
-            ) : null}
+            <div className="mt-5 space-y-2 text-sm leading-6 text-white/62">
+              {siteConfig.locations.map((location) => (
+                <p key={location.name}>
+                  <span className="font-semibold text-white/82">
+                    {location.name}:
+                  </span>{" "}
+                  {location.insuranceAccepted.length
+                    ? `Insurance accepted: ${location.insuranceAccepted.join(", ")}.`
+                    : "Insurance information coming soon."}
+                </p>
+              ))}
+            </div>
           </div>
         </div>
       </Container>

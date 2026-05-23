@@ -53,7 +53,7 @@ export function ImmersiveHero({
         sizes="100vw"
       />
       <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(7,20,20,0.92),rgba(16,42,42,0.72)_48%,rgba(16,42,42,0.2))]" />
-      <div className="absolute inset-x-0 bottom-0 -z-10 h-1/3 bg-gradient-to-t from-clinic-ink/70 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-gradient-to-t from-clinic-ink via-clinic-ink/85 to-transparent md:h-1/3 md:from-clinic-ink/70 md:via-transparent" />
 
       <Container className="grid min-h-[88svh] items-end pb-16 pt-32 md:pb-20 md:pt-40 lg:min-h-[92svh]">
         <div className="max-w-4xl">

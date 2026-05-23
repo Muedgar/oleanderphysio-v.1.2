@@ -23,6 +23,12 @@ export const promoImages = {
   servicesOverview: "/images/promos/services-overview-poster.jpeg",
 } as const;
 
+export const clinicImages = {
+  hallwayOne: "/images/clinic/hallway-1.avif",
+  hallwayTwo: "/images/clinic/hallway-2.avif",
+  doctorEric: "/images/clinic/doctor-eric.png",
+} as const;
+
 export const imageAltText = {
   logo: "Oleander Physio Clinic logo with Your Path To Recovery tagline",
   appointment:
@@ -31,4 +37,7 @@ export const imageAltText = {
     "Oleander Physio Clinic insurance accepted poster featuring Central Bank of The Gambia and GamSwitch",
   servicesOverview:
     "Oleander Physio Clinic services overview poster with clinic address and contact details",
+  hallwayOne: "Oleander Physio Clinic hallway and treatment room atmosphere",
+  hallwayTwo: "Oleander Physio Clinic interior hallway and care environment",
+  doctorEric: "Oleander Physio Clinic physiotherapist portrait",
 } as const;

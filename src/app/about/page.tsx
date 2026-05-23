@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { CheckCircle2, HeartPulse, ShieldCheck, Users } from "lucide-react";
+import { CheckCircle2, HeartPulse, MapPin, ShieldCheck, Users } from "lucide-react";
 
 import {
   aboutPage,
+  clinicImages,
   imageAltText,
-  promoImages,
   siteConfig,
 } from "../../../content";
 import { createPageMetadata } from "@/lib/seo";
@@ -23,21 +23,21 @@ export const metadata = createPageMetadata("about");
 
 const carePoints = [
   {
-    title: "Professional assessment",
+    title: "Professional excellence",
     description:
-      "Treatment starts with careful listening, movement assessment, and a clear understanding of your recovery goals.",
+      "Care is guided by professional standards, clinical reasoning, and respectful patient support.",
     icon: ShieldCheck,
   },
   {
-    title: "Care for all ages",
+    title: "Movement restoration",
     description:
-      "Services support children, adults, older people, athletes, workers, and families across different rehabilitation needs.",
+      "Physiotherapy focuses on recovery, pain management, strength, and confident movement.",
     icon: Users,
   },
   {
-    title: "Recovery education",
+    title: "Long-term wellbeing",
     description:
-      "Clients receive practical guidance that helps them understand symptoms, movement, prevention, and progress.",
+      "Clients receive education and support that helps them move better and live healthier.",
     icon: HeartPulse,
   },
 ] as const;
@@ -49,8 +49,8 @@ export default function About() {
         eyebrow={siteConfig.tagline}
         title={aboutPage.title}
         description={aboutPage.intro}
-        image={promoImages.servicesOverview}
-        imageAlt={imageAltText.servicesOverview}
+        image={clinicImages.hallwayTwo}
+        imageAlt={imageAltText.hallwayTwo}
       />
 
       <Section>
@@ -58,13 +58,18 @@ export default function About() {
           <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
             <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-border bg-muted shadow-soft">
               <Image
-                src={promoImages.appointment}
-                alt={imageAltText.appointment}
+                src={clinicImages.doctorEric}
+                alt={imageAltText.doctorEric}
                 fill
-                className="object-cover"
+                priority
+                className="object-cover object-top"
                 sizes="(min-width: 1024px) 44vw, 100vw"
               />
             </div>
+            <p className="text-sm font-semibold leading-6 text-muted-foreground lg:hidden">
+              Oleander Physio Clinic. Practical assessment, treatment, and
+              recovery education in Bakau.
+            </p>
             <div>
               <SectionHeading
                 eyebrow="How we help"
@@ -87,6 +92,10 @@ export default function About() {
                   </div>
                 ))}
               </div>
+              <p className="mt-8 hidden max-w-md text-sm font-semibold leading-6 text-muted-foreground lg:block">
+                Oleander Physio Clinic. Practical assessment, treatment, and
+                recovery education in Bakau.
+              </p>
             </div>
           </div>
         </Container>
@@ -96,9 +105,37 @@ export default function About() {
         <Container>
           <SectionHeading
             align="center"
+            eyebrow="Locations"
+            title="Oleander Physio Clinic operates in two locations."
+            description="The Gambia is serving patients in Bakau. Rwanda is expanding rehabilitation and physiotherapy services, with more location information coming soon."
+          />
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
+            {aboutPage.locations.map((location) => (
+              <Card key={location.name}>
+                <CardHeader>
+                  <MapPin className="mb-2 size-6 text-primary" aria-hidden="true" />
+                  <CardTitle>{location.name}</CardTitle>
+                  <CardDescription>
+                    <span className="block font-semibold text-foreground">
+                      {location.country}
+                    </span>
+                    <span className="mt-2 block">{location.status}</span>
+                    <span className="mt-2 block">{location.address}</span>
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      <Section>
+        <Container>
+          <SectionHeading
+            align="center"
             eyebrow="Clinic values"
-            title="Support that is practical, respectful, and focused on daily life."
-            description="The goal is not only symptom relief. The goal is helping people move with more confidence at home, at work, in sport, and in the community."
+            title="Move better, recover stronger, live healthier."
+            description="Oleander Physio Clinic is committed to professional excellence, evidence-based care, and long-term wellbeing."
           />
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {carePoints.map((point) => {

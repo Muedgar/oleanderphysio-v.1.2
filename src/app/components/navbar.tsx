@@ -3,14 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CalendarDays, Mail, MapPin, Menu, Phone, X } from "lucide-react";
+import { CalendarDays, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 import {
   brandAssets,
   contactActions,
-  contactInfo,
-  fullAddress,
   imageAltText,
   mainNavigation,
   siteConfig,
@@ -33,31 +31,6 @@ export default function NavBar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur">
-      <div className="hidden border-b border-border bg-clinic-ink text-white lg:block">
-        <div className="container flex h-10 items-center justify-between gap-6 text-sm">
-          <a
-            href={contactActions.appointmentHref}
-            className="inline-flex items-center gap-2 font-semibold"
-          >
-            <Phone className="size-4 text-primary" aria-hidden="true" />
-            Appointments: {contactInfo.appointmentPhone}
-          </a>
-          <div className="flex min-w-0 items-center gap-6">
-            <a
-              href={contactActions.emailHref}
-              className="inline-flex min-w-0 items-center gap-2"
-            >
-              <Mail className="size-4 shrink-0 text-primary" aria-hidden="true" />
-              <span className="truncate">{contactInfo.email}</span>
-            </a>
-            <span className="inline-flex max-w-xl items-center gap-2 truncate">
-              <MapPin className="size-4 shrink-0 text-primary" aria-hidden="true" />
-              <span className="truncate">{fullAddress}</span>
-            </span>
-          </div>
-        </div>
-      </div>
-
       <nav className="container flex min-h-20 items-center justify-between gap-4 py-3">
         <Link
           href="/"
@@ -96,7 +69,7 @@ export default function NavBar() {
         </div>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <Button asChild variant="outline">
+          <Button asChild variant="ghost">
             <a href={contactActions.whatsappHref}>WhatsApp</a>
           </Button>
           <Button asChild>

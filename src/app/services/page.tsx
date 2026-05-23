@@ -1,12 +1,11 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, HeartPulse } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 import {
+  clinicImages,
   contactActions,
-  promoImages,
+  imageAltText,
   servicesPage,
-  siteConfig,
 } from "../../../content";
 import { createPageMetadata } from "@/lib/seo";
 import { Container } from "@/components/layout/container";
@@ -22,18 +21,31 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import type { Service } from "../../../content";
 
 export const metadata = createPageMetadata("services");
+
+const serviceBySlug = new Map(
+  servicesPage.services.map((service) => [service.slug, service]),
+);
+
+function getGroupService(slug: string): Service | undefined {
+  return serviceBySlug.get(slug);
+}
+
+function isService(service: Service | undefined): service is Service {
+  return Boolean(service);
+}
 
 export default function Services() {
   return (
     <>
       <PageHero
-        eyebrow="Our services"
+        eyebrow="Choose the right first step"
         title={servicesPage.title}
         description={servicesPage.intro}
-        image={promoImages.servicesOverview}
-        imageAlt={`${siteConfig.name} services overview poster`}
+        image={clinicImages.hallwayOne}
+        imageAlt={imageAltText.hallwayOne}
       />
 
       <Section>
@@ -42,27 +54,27 @@ export default function Services() {
             <aside className="lg:sticky lg:top-32 lg:self-start">
               <Card className="bg-secondary">
                 <CardHeader>
-                  <CardTitle>Find a service</CardTitle>
+                  <CardTitle>Find your pathway</CardTitle>
                   <CardDescription>
-                    Choose a care area and contact the clinic if you are unsure
-                    which service fits your needs.
+                    Start with what has changed. The exact service can be
+                    confirmed after assessment.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
-                    {servicesPage.services.map((service) => (
+                    {servicesPage.groups.map((group) => (
                       <a
-                        key={service.slug}
-                        href={`#${service.slug}`}
+                        key={group.id}
+                        href={`#${group.id}`}
                         className="focus-ring rounded-md bg-background px-3 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
                       >
-                        {service.shortTitle}
+                        {group.title}
                       </a>
                     ))}
                   </div>
                   <Button asChild className="mt-6 w-full">
                     <a href={contactActions.appointmentHref}>
-                      Book an appointment
+                      Start with assessment
                       <ArrowRight aria-hidden="true" />
                     </a>
                   </Button>
@@ -70,77 +82,89 @@ export default function Services() {
               </Card>
             </aside>
 
-            <div className="grid gap-6">
-              {servicesPage.services.map((service) => (
-                <Card
-                  key={service.slug}
-                  id={service.slug}
-                  className="scroll-mt-32 overflow-hidden"
-                >
-                  <div className="grid gap-0 md:grid-cols-[0.9fr_1.1fr]">
-                    {service.image ? (
-                      <div className="relative min-h-72 bg-muted md:min-h-full">
-                        <Image
-                          src={service.image}
-                          alt={`${service.title} at ${siteConfig.name}`}
-                          fill
-                          className="object-cover"
-                          sizes="(min-width: 1024px) 34vw, 100vw"
-                        />
+            <div className="grid gap-16">
+              {servicesPage.groups.map((group) => {
+                const groupServices = group.serviceSlugs
+                  .map(getGroupService)
+                  .filter(isService);
+
+                return (
+                  <section
+                    key={group.id}
+                    id={group.id}
+                    className="scroll-mt-32"
+                    aria-labelledby={`${group.id}-title`}
+                  >
+                    <div className="grid gap-6 border-b border-border pb-8 md:grid-cols-[0.72fr_1.28fr] md:items-end">
+                      <div>
+                        <p className="editorial-eyebrow">
+                          {group.eyebrow}
+                        </p>
+                        <h2
+                          id={`${group.id}-title`}
+                          className="mt-5 font-display text-4xl font-semibold leading-[1.04] tracking-normal text-foreground md:text-5xl"
+                        >
+                          {group.title}
+                        </h2>
                       </div>
-                    ) : (
-                      <div className="flex min-h-72 items-center justify-center bg-clinic-hero p-8">
-                        <HeartPulse
-                          className="size-16 text-primary"
-                          aria-hidden="true"
-                        />
-                      </div>
-                    )}
-                    <div>
-                      <CardHeader>
-                        <Badge variant="secondary" className="w-fit">
-                          {service.shortTitle}
-                        </Badge>
-                        <CardTitle className="text-2xl">
-                          {service.title}
-                        </CardTitle>
-                        <CardDescription>{service.summary}</CardDescription>
-                      </CardHeader>
-                      <CardContent className="space-y-4">
-                        {service.description.map((paragraph) => (
-                          <p
-                            key={paragraph}
-                            className="leading-7 text-muted-foreground"
-                          >
-                            {paragraph}
-                          </p>
-                        ))}
-                        {service.examples?.length ? (
-                          <div>
-                            <h2 className="text-sm font-bold uppercase tracking-normal text-foreground">
-                              Common examples
-                            </h2>
-                            <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-                              {service.examples.map((example) => (
-                                <li
-                                  key={example}
-                                  className="flex items-start gap-2 text-sm text-muted-foreground"
-                                >
-                                  <CheckCircle2
-                                    className="mt-0.5 size-4 shrink-0 text-primary"
-                                    aria-hidden="true"
-                                  />
-                                  {example}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ) : null}
-                      </CardContent>
+                      <p className="max-w-2xl text-base leading-8 text-muted-foreground md:text-lg">
+                        {group.description}
+                      </p>
                     </div>
-                  </div>
-                </Card>
-              ))}
+
+                    <div className="mt-8 grid gap-5">
+                      {groupServices.map((service) => (
+                        <Card
+                          key={service.slug}
+                          id={service.slug}
+                          className="scroll-mt-32"
+                        >
+                          <CardHeader>
+                            <Badge variant="secondary" className="w-fit">
+                              {service.shortTitle}
+                            </Badge>
+                            <CardTitle className="text-2xl">
+                              {service.title}
+                            </CardTitle>
+                            <CardDescription>{service.summary}</CardDescription>
+                          </CardHeader>
+                          <CardContent className="space-y-4">
+                            {service.description.map((paragraph) => (
+                              <p
+                                key={paragraph}
+                                className="leading-7 text-muted-foreground"
+                              >
+                                {paragraph}
+                              </p>
+                            ))}
+                            {service.examples?.length ? (
+                              <div>
+                                <h3 className="text-sm font-extrabold uppercase tracking-normal text-foreground">
+                                  Often supports
+                                </h3>
+                                <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+                                  {service.examples.map((example) => (
+                                    <li
+                                      key={example}
+                                      className="flex items-start gap-2 text-sm text-muted-foreground"
+                                    >
+                                      <CheckCircle2
+                                        className="mt-0.5 size-4 shrink-0 text-primary"
+                                        aria-hidden="true"
+                                      />
+                                      {example}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            ) : null}
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  </section>
+                );
+              })}
             </div>
           </div>
         </Container>
@@ -150,16 +174,16 @@ export default function Services() {
         <Container>
           <div className="grid gap-8 rounded-lg bg-card p-6 shadow-sm md:grid-cols-[1fr_auto] md:items-center md:p-8">
             <SectionHeading
-              eyebrow="Next step"
+              eyebrow="Leave with a plan"
               title="Not sure where to start?"
-              description="Share what you are experiencing and the clinic team can guide you toward the most suitable appointment."
+              description="Tell us what has changed. We will help you choose the most useful first assessment."
             />
             <div className="flex flex-col gap-3 sm:flex-row md:flex-col">
               <Button asChild>
-                <a href={contactActions.appointmentHref}>Call the clinic</a>
+                <a href={contactActions.appointmentHref}>Talk it through</a>
               </Button>
               <Button asChild variant="outline">
-                <Link href="/contact/">Contact options</Link>
+                <Link href="/contact/">Send the details</Link>
               </Button>
             </div>
           </div>

@@ -27,7 +27,7 @@ export default function MenuPage() {
       <PageHero
         eyebrow={siteConfig.tagline}
         title="Menu"
-        description="Quick links to clinic information, services, community care, and contact options."
+        description="Quick links to care pathways, the clinic, community support, and contact options."
       />
       <Section>
         <Container>

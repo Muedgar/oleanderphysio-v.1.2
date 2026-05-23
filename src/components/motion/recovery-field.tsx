@@ -167,13 +167,13 @@ export function RecoveryField({ className }: RecoveryFieldProps) {
     <section className={cn("bg-clinic-ink text-white", className)}>
       <Container className="grid min-h-[78svh] gap-10 py-20 md:grid-cols-[0.9fr_1.1fr] md:items-center md:py-28">
         <div className="max-w-2xl" data-reveal="lift">
-          <p className="editorial-eyebrow">Movement field</p>
-          <h2 className="mt-5 font-display text-4xl font-bold leading-[1.05] tracking-normal md:text-6xl">
+          <p className="editorial-eyebrow">Small progress, repeated</p>
+          <h2 className="editorial-title-inverse mt-5">
             Movement is the treatment. Confidence is the outcome.
           </h2>
           <p className="mt-7 text-base leading-8 text-white/72 md:text-lg">
-            A quiet field of motion reflects the way recovery happens: small
-            changes, repeated with care, becoming strength over time.
+            Recovery often happens in small, repeated changes. We help those
+            changes become strength you can trust.
           </p>
         </div>
 

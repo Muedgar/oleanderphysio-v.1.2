@@ -86,7 +86,7 @@ export default function Foundation() {
         <Container>
           <SectionHeading
             align="center"
-            eyebrow="Community support"
+            eyebrow="Care beyond the room"
             title="Care that reaches beyond a single appointment."
             description="Community-focused physiotherapy connects treatment with education, confidence, prevention, and practical day-to-day support."
           />
@@ -114,7 +114,7 @@ export default function Foundation() {
         <Container>
           <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
             <SectionHeading
-              eyebrow="Related services"
+              eyebrow="Practical support"
               title="Support for homes, workplaces, and everyday movement."
               description="These services are especially relevant for prevention, education, accessibility, community recovery, and wellness."
             />
@@ -135,11 +135,11 @@ export default function Foundation() {
           </div>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <Button asChild>
-              <a href={contactActions.appointmentHref}>Book an appointment</a>
+              <a href={contactActions.appointmentHref}>Start the conversation</a>
             </Button>
             <Button asChild variant="outline">
               <Link href="/services/">
-                View services
+                View care pathways
                 <ArrowRight aria-hidden="true" />
               </Link>
             </Button>
