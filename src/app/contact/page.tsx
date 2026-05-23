@@ -1,4 +1,3 @@
-import Image from "next/image";
 import {
   CalendarDays,
   Mail,
@@ -8,12 +7,11 @@ import {
 } from "lucide-react";
 
 import {
+  clinicImages,
   contactActions,
   contactInfo,
   contactPage,
-  fullAddress,
   imageAltText,
-  promoImages,
   siteConfig,
 } from "../../../content";
 import { createPageMetadata } from "@/lib/seo";
@@ -36,30 +34,30 @@ export const metadata = createPageMetadata("contact");
 
 const contactMethods = [
   {
-    title: "Appointments",
+    title: "Start by phone",
     value: contactInfo.appointmentPhone,
-    description: "Call to book physiotherapy care.",
+    description: "Talk through what has changed and choose a first step.",
     href: contactActions.appointmentHref,
     icon: CalendarDays,
   },
   {
-    title: "Management and inquiries",
+    title: "Clinic inquiries",
     value: contactInfo.managementPhone,
-    description: "Use this line for management questions and general inquiries.",
+    description: "For management questions, partnerships, and general clinic needs.",
     href: contactActions.managementHref,
     icon: Phone,
   },
   {
     title: "Email",
     value: contactInfo.email,
-    description: "Send appointment details or service questions by email.",
+    description: "Send the details you want the clinic to understand before care.",
     href: contactActions.emailHref,
     icon: Mail,
   },
   {
     title: "WhatsApp",
     value: contactInfo.appointmentPhone,
-    description: "Send a quick message to request appointment guidance.",
+    description: "Send a quick note when calling is not convenient.",
     href: contactActions.whatsappHref,
     icon: MessageCircle,
   },
@@ -67,9 +65,10 @@ const contactMethods = [
 
 const messageChecklist = [
   "Your name and preferred contact number",
-  "The main reason for the appointment",
+  "What hurts, changed, or feels limited",
   "How long the symptoms or concern has been present",
-  "Preferred appointment days or times",
+  "What you want to return to",
+  "Preferred assessment days or times",
   "Any relevant referral, diagnosis, or insurance details",
 ] as const;
 
@@ -80,8 +79,8 @@ export default function Contact() {
         eyebrow="Contact"
         title={contactPage.title}
         description={contactPage.intro}
-        image={promoImages.appointment}
-        imageAlt={imageAltText.appointment}
+        image={clinicImages.hallwayTwo}
+        imageAlt={imageAltText.hallwayTwo}
       />
 
       <Section>
@@ -113,39 +112,46 @@ export default function Contact() {
 
       <Section tone="muted">
         <Container>
-          <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-            <div>
-              <SectionHeading
-                eyebrow="Visit"
-                title="Find Oleander Physio Clinic in Bakau."
-                description="The clinic is located on Bertil Harding Highway, opposite the Election House, next to Fatou Golden Plaza, on the ground floor of the Cornerstone Center."
-              />
-              <Card className="mt-8">
+          <SectionHeading
+            eyebrow="Clinic locations"
+            title="Oleander Physio Clinic Gambia and Rwanda."
+            description="The Gambia clinic is serving patients in Bakau. Rwanda details will be added soon as the expansion continues."
+          />
+          <div className="mt-8 grid gap-5 md:grid-cols-2">
+            {siteConfig.locations.map((location) => (
+              <Card key={location.name}>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <MapPin className="size-5 text-primary" aria-hidden="true" />
-                    Clinic address
+                    {location.name}
                   </CardTitle>
-                  <CardDescription>{fullAddress}</CardDescription>
+                  <CardDescription>
+                    <span className="block font-semibold text-foreground">
+                      {location.status}
+                    </span>
+                    <span className="mt-2 block">{location.address}</span>
+                  </CardDescription>
                 </CardHeader>
+                <CardContent>
+                  <h3 className="text-sm font-extrabold uppercase tracking-normal text-foreground">
+                    Insurance accepted
+                  </h3>
+                  {location.insuranceAccepted.length ? (
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {location.insuranceAccepted.map((item) => (
+                        <Badge key={`${location.name}-${item}`} variant="secondary">
+                          {item}
+                        </Badge>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                      Insurance information coming soon.
+                    </p>
+                  )}
+                </CardContent>
               </Card>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {siteConfig.insuranceAccepted.map((item) => (
-                  <Badge key={item} variant="secondary">
-                    {item}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-            <div className="relative aspect-[3/4] overflow-hidden rounded-lg border border-border bg-card shadow-soft">
-              <Image
-                src={promoImages.servicesOverview}
-                alt={imageAltText.servicesOverview}
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 42vw, 100vw"
-              />
-            </div>
+            ))}
           </div>
         </Container>
       </Section>
@@ -154,9 +160,9 @@ export default function Contact() {
         <Container>
           <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
             <SectionHeading
-              eyebrow="Message the clinic"
-              title="Prepare a clear appointment request."
-              description="Use the form to assemble the details the clinic needs. It opens your email app with the message ready for you to review and send."
+              eyebrow="Tell us what hurts"
+              title="Prepare a clear assessment request."
+              description="Use the form to shape the details into a clear message. Review it, send it, and arrive with the important context already shared."
             />
             <StaticContactForm />
           </div>
@@ -167,13 +173,13 @@ export default function Contact() {
         <Container>
           <div className="grid gap-8 rounded-lg border border-border bg-card p-6 shadow-sm lg:grid-cols-[1fr_0.8fr] lg:p-8">
             <SectionHeading
-              eyebrow="Before you contact us"
-              title="Helpful details to include in your message."
-              description="A few clear details help the clinic understand what support you need and respond with the right next step."
+              eyebrow="Leave with a plan"
+              title="Helpful details to include."
+              description="A few clear details help the clinic understand your body, your goal, and the right first step."
             />
             <Card className="bg-secondary">
               <CardHeader>
-                <CardTitle>Appointment message checklist</CardTitle>
+                <CardTitle>Assessment message checklist</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3 text-sm text-secondary-foreground">
@@ -187,11 +193,11 @@ export default function Contact() {
                 <div className="mt-6 flex flex-col gap-3">
                   <Button asChild>
                     <a href={contactActions.appointmentHref}>
-                      Call for an appointment
+                      Talk it through
                     </a>
                   </Button>
                   <Button asChild variant="outline">
-                    <a href={contactActions.emailHref}>Email the clinic</a>
+                    <a href={contactActions.emailHref}>Send the details</a>
                   </Button>
                 </div>
               </CardContent>

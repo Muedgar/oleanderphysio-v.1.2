@@ -36,6 +36,9 @@ export default function Footer() {
             <p className="mt-5 max-w-md text-sm leading-7 text-white/78">
               {siteConfig.description}
             </p>
+            <p className="mt-4 max-w-md text-sm font-semibold leading-6 text-white">
+              First we understand. Then we rebuild.
+            </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild>
                 <a href={siteConfig.primaryCallToAction.href}>
@@ -44,7 +47,7 @@ export default function Footer() {
                 </a>
               </Button>
               <Button asChild variant="secondary">
-                <a href={contactActions.emailHref}>Email the clinic</a>
+                <a href={contactActions.emailHref}>Tell us what hurts</a>
               </Button>
             </div>
           </div>
@@ -90,7 +93,7 @@ export default function Footer() {
           >
             <Phone className="mt-1 size-4 shrink-0 text-primary" aria-hidden="true" />
             <span>
-              <span className="block font-semibold text-white">Appointments</span>
+              <span className="block font-semibold text-white">Start by phone</span>
               {contactInfo.appointmentPhone}
             </span>
           </a>
@@ -100,7 +103,7 @@ export default function Footer() {
           >
             <Mail className="mt-1 size-4 shrink-0 text-primary" aria-hidden="true" />
             <span>
-              <span className="block font-semibold text-white">Email</span>
+              <span className="block font-semibold text-white">Send details</span>
               {contactInfo.email}
             </span>
           </a>

@@ -4,15 +4,15 @@ export const mainNavigation = [
     href: "/",
   },
   {
-    label: "About",
+    label: "Clinic",
     href: "/about/",
   },
   {
-    label: "Services",
+    label: "Care",
     href: "/services/",
   },
   {
-    label: "Foundation",
+    label: "Community",
     href: "/foundation/",
   },
   {
@@ -25,13 +25,13 @@ export const footerNavigation = [
   {
     title: "Clinic",
     links: [
-      { label: "About", href: "/about/" },
-      { label: "Services", href: "/services/" },
+      { label: "Clinic", href: "/about/" },
+      { label: "Care", href: "/services/" },
       { label: "Contact", href: "/contact/" },
     ],
   },
   {
-    title: "Services",
+    title: "Care",
     links: [
       { label: "Sports Physiotherapy", href: "/services/#sports-physiotherapy" },
       {
@@ -45,8 +45,8 @@ export const footerNavigation = [
   {
     title: "Contact",
     links: [
-      { label: "Book an appointment", href: "tel:+2207538791" },
-      { label: "Email the clinic", href: "mailto:oleanderphysioclinic@gmail.com" },
+      { label: "Start assessment", href: "tel:+2207538791" },
+      { label: "Tell us what hurts", href: "mailto:oleanderphysioclinic@gmail.com" },
       { label: "WhatsApp", href: "https://wa.me/2207538791" },
     ],
   },

@@ -40,7 +40,7 @@ function buildEmailBody(form: FormState) {
     `Phone: ${form.phone}`,
     `Email: ${form.email || "Not provided"}`,
     `Service interest: ${form.service || "Not sure yet"}`,
-    `Preferred appointment time: ${form.preferredTime || "Flexible"}`,
+    `Preferred assessment time: ${form.preferredTime || "Flexible"}`,
     "",
     "Message:",
     form.message,
@@ -98,10 +98,10 @@ export function StaticContactForm() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Prepare an appointment request</CardTitle>
+        <CardTitle>Prepare an assessment request</CardTitle>
         <CardDescription>
-          This form prepares your message for email. Review the message, then
-          send it from your email app or copy it into WhatsApp.
+          Share the essentials before care begins: what changed, what you need,
+          and what you want to return to.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -145,7 +145,7 @@ export function StaticContactForm() {
                 onChange={(event) => updateField("service", event.target.value)}
                 className="focus-ring h-11 w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm"
               >
-                <option value="">Not sure yet</option>
+                <option value="">Help me choose</option>
                 {services.map((service) => (
                   <option key={service.slug} value={service.title}>
                     {service.title}
@@ -156,7 +156,7 @@ export function StaticContactForm() {
           </div>
 
           <label className="grid gap-2 text-sm font-semibold">
-            Preferred appointment time
+            Preferred assessment time
             <Input
               value={form.preferredTime}
               onChange={(event) =>
@@ -167,11 +167,11 @@ export function StaticContactForm() {
           </label>
 
           <label className="grid gap-2 text-sm font-semibold">
-            Message
+            What changed?
             <Textarea
               value={form.message}
               onChange={(event) => updateField("message", event.target.value)}
-              placeholder="Briefly describe the pain, injury, condition, or support you need."
+              placeholder="Briefly describe the pain, injury, condition, or support you need. Include what you want to return to."
             />
           </label>
 
@@ -182,7 +182,7 @@ export function StaticContactForm() {
           ) : null}
 
           <div className="flex flex-col gap-3 sm:flex-row">
-            <Button type="submit">Prepare message</Button>
+            <Button type="submit">Shape the message</Button>
           </div>
         </form>
 

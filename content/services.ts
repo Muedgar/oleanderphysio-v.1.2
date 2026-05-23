@@ -26,6 +26,14 @@ export type Service = {
   image?: string;
 };
 
+export type ServiceGroup = {
+  id: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  serviceSlugs: Service["slug"][];
+};
+
 export const services: Service[] = [
   {
     slug: "sports-physiotherapy",
@@ -224,6 +232,58 @@ export const services: Service[] = [
     description: [
       "Assistive devices and aids can help clients move more safely, conserve energy, and maintain independence during recovery or long-term care.",
       "The clinic can advise on suitable supports based on a client's condition, goals, and daily environment.",
+    ],
+  },
+];
+
+export const serviceGroups: ServiceGroup[] = [
+  {
+    id: "pain-injury-recovery",
+    eyebrow: "Pathway 01",
+    title: "Pain, injury, and recovery",
+    description:
+      "For pain, sports injuries, orthopedic recovery, post-operative movement, and the strength needed to return with confidence.",
+    serviceSlugs: [
+      "sports-physiotherapy",
+      "orthopedic-physiotherapy",
+      "exercise-therapy-fitness-conditioning",
+    ],
+  },
+  {
+    id: "mobility-balance-neurological",
+    eyebrow: "Pathway 02",
+    title: "Mobility, balance, and neurological care",
+    description:
+      "For movement changes, balance concerns, neurological rehabilitation, age-related mobility, and support that makes daily life safer.",
+    serviceSlugs: [
+      "neurological-physiotherapy",
+      "geriatric-physiotherapy",
+      "assistive-devices-aids",
+    ],
+  },
+  {
+    id: "family-life-stage-care",
+    eyebrow: "Pathway 03",
+    title: "Family and life-stage care",
+    description:
+      "For women's health, children, breathing support, and changing bodies that need careful physiotherapy at the right pace.",
+    serviceSlugs: [
+      "womens-health-physiotherapy",
+      "pediatric-physiotherapy",
+      "cardiorespiratory-physiotherapy",
+    ],
+  },
+  {
+    id: "work-wellness-community",
+    eyebrow: "Pathway 04",
+    title: "Work, wellness, and community",
+    description:
+      "For workplace health, prevention, remote guidance, wellness habits, and practical recovery support beyond the treatment room.",
+    serviceSlugs: [
+      "occupational-health-ergonomics",
+      "health-promotion-wellness",
+      "community-physiotherapy",
+      "telerehabilitation",
     ],
   },
 ];
